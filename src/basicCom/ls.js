@@ -12,7 +12,7 @@ export const ls = async () => {
         };
       })
     );
-    const sortLs = [...filesWithTypes.filter((el) => el.Type === 'directory'), ...filesWithTypes.filter((el) => el.Type === 'file')];
+    const sortLs = [...filesType.filter((el) => el.Type === 'directory'), ...filesType.filter((el) => el.Type === 'file')];
     console.table(sortLs);
   } catch (error) {
     console.log(TEXT.FAILOperation);

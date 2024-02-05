@@ -10,6 +10,4 @@ const colors = {
     cyan: "\x1b[36m",
 }
 
-export const highlight = (word, color) => {
-    `${colors[color]}${word}${colors.reset}`
-}
+export const highlight = (word, color) => `${colors[color]}${word}${colors.reset}`;

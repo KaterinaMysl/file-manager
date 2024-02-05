@@ -1,12 +1,10 @@
 import { EOL, cpus, userInfo, arch } from 'node:os';
 import { TEXT } from "../settings/constants.js";
 
-
-
 export const os = (flag) => {
   switch (flag) {
     case "--EOL":
-      console.log(MESSAGES.EOL(EOL));
+      console.log(TEXT.EOL(EOL));
       break;
     case "--cpus":
       console.table(cpus());
