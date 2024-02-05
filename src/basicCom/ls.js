@@ -12,7 +12,8 @@ export const ls = async () => {
         };
       })
     );
-    console.table(filesType);
+    const sortLs = [...filesWithTypes.filter((el) => el.Type === 'directory'), ...filesWithTypes.filter((el) => el.Type === 'file')];
+    console.table(sortLs);
   } catch (error) {
     console.log(TEXT.FAILOperation);
   }

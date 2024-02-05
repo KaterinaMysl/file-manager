@@ -1,4 +1,17 @@
-import { cd, cp, up, ls, add, cat, rn, mv, remove } from "../basicCom/index.js";
+import {
+  cd,
+  cp,
+  up,
+  ls,
+  add,
+  cat,
+  rn,
+  mv,
+  remove,
+} from "../basicCom/index.js";
+import { compress, decompress } from "../compress/index.js";
+import { hash } from "../hash/hash.js";
+import { os } from "../os/os.js";
 import * as readline from "node:readline/promises";
 import { TEXT } from "../settings/constants.js";
 
@@ -17,7 +30,6 @@ const parseInput = (input) => {
 
 export const getCommand = async (input) => {
   const argsI = parseInput(input);
-  console.log(argsI);
 
   switch (argsI[0]) {
     case "up":
@@ -81,6 +93,34 @@ export const getCommand = async (input) => {
         return console.log(TEXT.ERRORInput);
       }
       await remove(argsI[1]);
+      break;
+
+    case "hash":
+      if (argsI.length !== 2) {
+        return console.log(TEXT.ERRORInput);
+      }
+      await hash(argsI[1]);
+      break;
+
+    case "compress":
+      if (argsI.length !== 3) {
+        return console.log(TEXT.ERRORInput);
+      }
+      await compress(argsI[1], argsI[2]);
+      break;
+
+    case "decompress":
+      if (argsI.length !== 3) {
+        return console.log(TEXT.ERRORInput);
+      }
+      await decompress(argsI[1], argsI[2]);
+      break;
+
+    case "os":
+      if (argsI.length !== 2) {
+        return console.log(TEXT.ERRORInput);
+      }
+      os(argsI[1]);
       break;
 
     default:

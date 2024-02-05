@@ -1,7 +1,9 @@
-import os from "os";
+
 import * as readline from "node:readline/promises";
-import { getCommand } from "./src/services/getCommand.js";
+import os from "os";
 import { getUserName } from "./src/services/getUserName.js";
+import { getCommand } from "./src/services/getCommand.js";
+
 import { TEXT } from "./src/settings/constants.js";
 
 const greeting = async () => {
