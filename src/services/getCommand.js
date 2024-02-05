@@ -1,46 +1,86 @@
-import { cd, up, ls, add, cat } from "../basicCom/index.js";
+import { cd, cp, up, ls, add, cat, rn, mv, remove } from "../basicCom/index.js";
+import * as readline from "node:readline/promises";
 import { TEXT } from "../settings/constants.js";
 
-cd;
+const parseInput = (input) => {
+  const reg = /[^\s'"]+|['"]([^'"]*?)['"](?!['"])/gi;
+  const array = [];
+  let compare;
+  do {
+    compare = reg.exec(input);
+    if (compare !== null) {
+      array.push(compare[1] ? compare[1] : compare[0]);
+    }
+  } while (compare !== null);
+  return array;
+};
 
-export const getCommand = (input) => {
-  const args = input.split(" ").filter((el) => el);
-  const trimedInput = input.trim();
+export const getCommand = async (input) => {
+  const argsI = parseInput(input);
+  console.log(argsI);
 
-  switch (args[0]) {
+  switch (argsI[0]) {
     case "up":
-      if (args.length > 1) {
+      if (argsI.length > 1) {
         return console.log(TEXT.ERRORInput);
       }
-      up();
+      await up();
       break;
 
     case "cd":
-      if (args.length !== 2) {
+      if (argsI.length !== 2) {
         return console.log(TEXT.ERRORInput);
       }
-      cd(args[1]);
+      await cd(argsI[1]);
       break;
 
     case "ls":
-      if (args.length > 1) {
+      if (argsI.length > 1) {
         return console.log(TEXT.ERRORInput);
       }
-      ls();
+      await ls();
       break;
 
     case "add":
-      if (args.length !== 2) {
+      if (argsI.length !== 2) {
         return console.log(TEXT.ERRORInput);
       }
-      add(args[1]);
+      await add(argsI[1]);
       break;
 
     case "cat":
-      if (args.length !== 2) {
+      if (argsI.length !== 2) {
         return console.log(TEXT.ERRORInput);
       }
-      cat(args[1]);
+      await cat(argsI[1]);
+      break;
+
+    case "rn":
+      if (argsI.length !== 3) {
+        return console.log(TEXT.ERRORInput);
+      }
+      await rn(argsI[1], argsI[2]);
+      break;
+
+    case "cp":
+      if (argsI.length !== 3) {
+        return console.log(TEXT.ERRORInput);
+      }
+      await cp(argsI[1], argsI[2]);
+      break;
+
+    case "mv":
+      if (argsI.length !== 3) {
+        return console.log(TEXT.ERRORInput);
+      }
+      await mv(argsI[1], argsI[2]);
+      break;
+
+    case "rm":
+      if (argsI.length !== 2) {
+        return console.log(TEXT.ERRORInput);
+      }
+      await remove(argsI[1]);
       break;
 
     default:
