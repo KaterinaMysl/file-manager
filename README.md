@@ -40,4 +40,10 @@ cd './big happy capybara'
 cd 'C:\Users\very very happy capybara'
 add 'more capybara.txt'
 rm 'friend to capybara.txt'
+
+
+compress h.txt h.txt.br (h the name file)
+decompress h.txt.br h.txt
 ```
+
+
